@@ -175,3 +175,21 @@ def get_order_by_id(order_id: int) -> Order | None:
         if order.id == order_id:
             return order
     return None
+
+
+def cancel_order_by_id(order_id: int) -> Order | None:
+    """Mark an existing order as cancelled.
+
+    Example:
+        >>> order = cancel_order_by_id(3)
+        >>> order is not None
+        True
+        >>> order.status
+        <OrderStatus.CANCELLED: 'cancelled'>
+    """
+    order = get_order_by_id(order_id)
+    if order is None:
+        return None
+
+    order.status = OrderStatus.CANCELLED
+    return order
