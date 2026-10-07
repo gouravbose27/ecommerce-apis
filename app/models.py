@@ -43,6 +43,22 @@ class Product(BaseModel):
     inventory: int = Field(..., description="Units available in stock", ge=0)
 
 
+class ProductDescriptionUpdate(BaseModel):
+    """Payload schema for updating a product's description.
+
+    Example:
+        >>> payload = ProductDescriptionUpdate(description="New updated description")
+        >>> payload.description
+        'New updated description'
+    """
+
+    description: str = Field(
+        ...,
+        description="Updated detailed product description",
+        min_length=1,
+    )
+
+
 class OrderItem(BaseModel):
     """Line item within an order containing product reference and quantity.
 

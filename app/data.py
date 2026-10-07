@@ -146,6 +146,26 @@ def get_product_by_id(product_id: int) -> Product | None:
     return None
 
 
+def update_product_description(product_id: int, description: str) -> Product | None:
+    """Update the description of an existing product.
+
+    Example:
+        >>> prod = update_product_description(1, "Updated test description")
+        >>> prod is not None
+        True
+        >>> prod.description
+        'Updated test description'
+        >>> update_product_description(9999, "None") is None
+        True
+    """
+    product = get_product_by_id(product_id)
+    if product is None:
+        return None
+
+    product.description = description
+    return product
+
+
 def get_all_orders() -> list[Order]:
     """Retrieve all orders recorded in the store.
 
